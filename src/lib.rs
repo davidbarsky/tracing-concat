@@ -59,11 +59,11 @@ impl<S: Subscriber> Layer<S> for TracingConcatLayer {
     }
 
     fn on_enter(&self, id: &Id, _: Context<S>) {
-        self.inner.spans.pop(id);
+        self.inner.enter(id);
     }
 
     fn on_exit(&self, id: &Id, _: Context<S>) {
-        self.inner.spans.get(id).unwrap();
+        self.inner.exit(id);
     }
 
     fn on_close(&self, id: Id, ctx: Context<S>) {
@@ -110,11 +110,11 @@ impl Subscriber for TracingConcat {
     }
 
     fn enter(&self, id: &Id) {
-        self.spans.pop(id);
+        self.spans.push(id);
     }
 
     fn exit(&self, id: &Id) {
-        self.spans.get(id).unwrap();
+        self.spans.pop(id)
     }
 
     #[inline]
