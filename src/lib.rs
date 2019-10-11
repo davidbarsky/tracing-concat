@@ -49,10 +49,10 @@ impl<S: Subscriber> Layer<S> for TracingConcatLayer {
             .record(span, values, &self.inner.fmt_fields)
     }
 
-    // fn on_event(&self, event: &Event<'_>, ctx: Context<S>) {
-    //     println!("ctx: {:?}", ctx.current_span());
-    //     println!("Event: {:?}", event);
-    // }
+    fn on_event(&self, event: &Event<'_>, ctx: Context<S>) {
+        println!("ctx: {:?}", ctx.current_span());
+        println!("Event: {:?}", event);
+    }
 
     fn enabled(&self, metadata: &Metadata, _: Context<S>) -> bool {
         self.inner.enabled(metadata)
