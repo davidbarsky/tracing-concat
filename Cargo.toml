@@ -1,0 +1,18 @@
+[package]
+name = "tracing-concat"
+version = "0.1.0"
+authors = ["David Barsky <dbarsky@amazon.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tracing = { git = "https://github.com/tokio-rs/tracing" }
+tracing-subscriber = { git = "https://github.com/tokio-rs/tracing" }
+tracing-serde = { git = "https://github.com/tokio-rs/tracing" }
+tracing-core = { git = "https://github.com/tokio-rs/tracing" }
+owning_ref = "0.4.0"
+chashmap = "2.2.2"
+
+[patch.crates-io]
+tracing-core = { git = "https://github.com/tokio-rs/tracing" }
